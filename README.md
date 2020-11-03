@@ -3,7 +3,7 @@
 ### Git
 
 ``
-git clone <repo> <br>
-git add -A /adda alla ändringar och nya filer/ <br>
+git clone <repo> </br>
+git add -A /adda alla ändringar och nya filer/ <br/>
 git commit -m "{meddelande}"
 ``
