@@ -6,6 +6,16 @@ Commands and information I need to remember
 
 # Git
 
+### Revert to an earlier commit 
+
+```sh
+git revert <commit sha>
+```
+
+Note: Reverts the given commit and you end up at the commit before the specified one.
+
+---
+
 ### Remove local changes
 
 
@@ -32,5 +42,5 @@ Commands and information I need to remember
 
 4. ``` git stash -u ``` - Removes all changes [Type 1, Type 2, Type 3]
 
-
+---
 
