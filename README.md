@@ -4,9 +4,7 @@ Commands and information I need to remember
 
 ---
 
-## Git
-
-
+# Git
 
 ### Remove local changes
 
@@ -14,11 +12,11 @@ Commands and information I need to remember
 <ins>There could be only three categories of files when we make local changes:</ins>
 
 
-**Type 1.** Staged Tracked files
+    Type 1. Staged Tracked files
 
-**Type 2.** Unstaged Tracked files
+    Type 2. Unstaged Tracked files
 
-**Type 3.** Unstaged UnTracked files a.k.a UnTracked files
+    Type 3. Unstaged UnTracked files a.k.a UnTracked files
 
 > * Staged - Those that are moved to staging area/ Added to index
 > * Tracked - modified files
