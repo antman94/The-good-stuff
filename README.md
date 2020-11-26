@@ -2,11 +2,11 @@
 
 Commands and information I need to remember
 
-
+---
 
 ## Git
 
----
+
 
 ### Remove local changes
 
