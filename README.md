@@ -44,3 +44,8 @@ Note: Reverts the given commit and you end up at the commit before the specified
 
 ---
 
+# Ubuntu BASH shell
+
+### Start up MongoDB
+
+sudo mongod --dbpath /var/lib/mongo/data/db &
