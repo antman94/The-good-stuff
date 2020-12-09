@@ -48,4 +48,10 @@ Note: Reverts the given commit and you end up at the commit before the specified
 
 ### Start up MongoDB
 
-sudo mongod --dbpath /var/lib/mongo/data/db &
+``` sudo mongod --dbpath /var/lib/mongo/data/db &```
+
+### If ERROR "Failed to unlink socket file /tmp/mongodb-27017.sock"
+
+Do this to set permission of the socket file to the current user:
+
+``` sudo chown `whoami` /tmp/mongodb-27017.sock ```
