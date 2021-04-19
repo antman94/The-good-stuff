@@ -65,6 +65,10 @@ Do this to set permission of the socket file to the current user:
 
 ## SSL Certificates
 
+#### For problems with the certifcate chain
+
+Check out this [medium article](https://medium.com/@superseb/get-your-certificate-chain-right-4b117a9c0fce)
+
 #### Local testing with HTTPS protocol in node.js + React 
 
 
