@@ -95,5 +95,17 @@ Now you backend should be set up for local HTTPS development, in some cases you 
 #### HTTPS in the front end (must use same certificates as the server)
 
 ``` HTTPS=true SSL_CRT_FILE=cert.crt SSL_KEY_FILE=cert.key npm start ```</br>
-or </br>
+or for package.json: </br>
 ``` HTTPS=true SSL_CRT_FILE=cert.crt SSL_KEY_FILE=cert.key react-scripts start ```</br>
+
+## Running snapd on WSL2 Ubuntu
+
+Assuming snap is installed, execute the following to get it working: </br>
+``` sudo apt-get update && sudo apt-get install -yqq daemonize dbus-user-session fontconfig ``` </br>
+``` sudo daemonize /usr/bin/unshare --fork --pid --mount-proc /lib/systemd/systemd --system-unit=basic.target ``` </br>
+``` exec sudo nsenter -t $(pidof systemd) -a su - $LOGNAME ``` </br>
+
+``` snap version ``` </br>
+
+If terminal crashes on third command: </br>
+``` wsl --shutdown ``` in windows cmd/terminal
