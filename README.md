@@ -42,7 +42,10 @@ Note: Reverts the given commit and you end up at the commit before the specified
 
 4. ``` git stash -u ``` - Removes all changes [Type 1, Type 2, Type 3]
 
+![image](https://user-images.githubusercontent.com/13006925/115860840-5ff2cd80-a432-11eb-983d-2f41e13b0976.png)
+
 ---
+
 
 # Ubuntu BASH shell
 
@@ -109,3 +112,5 @@ Assuming snap is installed, execute the following to get it working: </br>
 
 If terminal crashes on third command: </br>
 ``` wsl --shutdown ``` in windows cmd/terminal
+
+---
