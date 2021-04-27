@@ -14,7 +14,6 @@ git revert <commit sha>
 
 Note: Reverts the given commit and you end up at the commit before the specified one.
 
----
 
 ### Remove local changes
 
@@ -43,6 +42,12 @@ Note: Reverts the given commit and you end up at the commit before the specified
 4. ``` git stash -u ``` - Removes all changes [Type 1, Type 2, Type 3]
 
 ![image](https://user-images.githubusercontent.com/13006925/115860840-5ff2cd80-a432-11eb-983d-2f41e13b0976.png)
+
+### Remove remote files or folders
+
+1. (FILES) ``` git rm --cached <filename> ``` // (Folders) ``` git rm --cached -r <dir_name> ``` 
+2. ``` git commit -m "Removed folder from repository" ```
+3. ``` git push origin master ```
 
 ---
 
