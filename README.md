@@ -119,3 +119,18 @@ If terminal crashes on third command: </br>
 ``` wsl --shutdown ``` in windows cmd/terminal
 
 ---
+
+# Windows terminal (powershell)
+
+## CURL
+
+### Parsing a JSON response into more readable format, and selecting which parts to display
+
+``` $request = 'http://localhost:5000/test' ``` <br/>
+``` Invoke-WebRequest $request -UseBasicParsing | ConvertFrom-Json | Select name ``` <br/>
+Result:
+``` 
+name
+-----
+ante
+```
