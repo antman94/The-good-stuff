@@ -62,13 +62,17 @@ Note: Reverts the given commit and you end up at the commit before the specified
 
 In /lib run:
 
-``` mongod --dbpath=$(echo ~)/data/db &```
+```bash
+mongod --dbpath=$(echo ~)/data/db &
+```
 
 ### If ERROR "Failed to unlink socket file /tmp/mongodb-27017.sock"
 
 Do this to set permission of the socket file to the current user:
 
-``` sudo chown `whoami` /tmp/mongodb-27017.sock ```
+```bash 
+sudo chown `whoami` /tmp/mongodb-27017.sock 
+```
 
 
 ## SSL Certificates
@@ -109,11 +113,28 @@ or for package.json: </br>
 ## Running snapd on WSL2 Ubuntu
 
 Assuming snap is installed, execute the following to get it working: </br>
-``` sudo apt-get update && sudo apt-get install -yqq daemonize dbus-user-session fontconfig ``` </br>
-``` sudo daemonize /usr/bin/unshare --fork --pid --mount-proc /lib/systemd/systemd --system-unit=basic.target ``` </br>
-``` exec sudo nsenter -t $(pidof systemd) -a su - $LOGNAME ``` </br>
+```shell 
+sudo apt-get update && sudo apt-get install -yqq daemonize dbus-user-session fontconfig 
+```
 
-``` snap version ``` </br>
+</br>
+
+```shell 
+sudo daemonize /usr/bin/unshare --fork --pid --mount-proc /lib/systemd/systemd --system-unit=basic.target 
+``` 
+
+</br>
+
+```shell 
+exec sudo nsenter -t $(pidof systemd) -a su - $LOGNAME 
+``` 
+</br>
+
+```shell 
+snap version
+``` 
+
+</br>
 
 If terminal crashes on third command: </br>
 ``` wsl --shutdown ``` in windows cmd/terminal
@@ -126,11 +147,44 @@ If terminal crashes on third command: </br>
 
 ### Parsing a JSON response into more readable format, and selecting which parts to display
 
-``` $request = 'http://localhost:5000/test' ``` <br/>
-``` Invoke-WebRequest $request -UseBasicParsing | ConvertFrom-Json | Select name ``` <br/>
-Result:
+```powershell 
+$request = 'http://localhost:5000/test' 
 ``` 
-name
------
-ante
+
+<br/>
+
+```powershell 
+Invoke-WebRequest $request -UseBasicParsing | ConvertFrom-Json | Select name country 
+``` 
+
+<br/>
+Result:
+
+```powershell
+name        country
+-----       -----
+ante        sweden
 ```
+
+---
+
+# NodeJS
+
+## Firebase
+
+### Clear an entire collection in firestore
+
+```javascript
+function clearCollection(path) {
+  const ref = db.collection(path)
+  ref.onSnapshot((snapshot) => {
+    snapshot.docs.forEach((doc) => {
+      ref.doc(doc.id).delete()
+    })
+  })
+}
+// Use it like this:
+clearCollection('meetings') 
+```
+
+
