@@ -187,4 +187,78 @@ function clearCollection(path) {
 clearCollection('meetings') 
 ```
 
+---
+
+# Docker
+
+## Deploy React app
+
+Set up dockerfile like this
+
+```dockerfile
+FROM node:14.1-alpine AS builder
+
+WORKDIR /opt/web
+COPY package.json ./
+RUN npm install
+
+ENV PATH="./node_modules/.bin:$PATH"
+
+COPY . ./
+RUN npm run build
+
+FROM nginx:1.17-alpine
+RUN apk --no-cache add curl
+RUN curl -L https://github.com/a8m/envsubst/releases/download/v1.1.0/envsubst-`uname -s`-`uname -m` -o envsubst && \
+    chmod +x envsubst && \
+    mv envsubst /usr/local/bin
+COPY --from=builder ./nginx.config /etc/nginx/nginx.template
+CMD ["/bin/sh", "-c", "envsubst < /etc/nginx/nginx.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
+COPY --from=builder /opt/web/build /usr/share/nginx/html
+```
+
+Create nginx.config like this
+
+```
+server {
+    listen       ${PORT:-80};
+    server_name  _;
+
+    root /usr/share/nginx/html;
+    index index.html;
+
+    location / {
+        try_files $$uri /index.html;
+    }
+}
+```
+
+And static.json like this
+
+```json 
+{
+  "headers": {
+    "/**": {
+      "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://*.okta.com;",
+      "Referrer-Policy": "no-referrer, strict-origin-when-cross-origin",
+      "Strict-Transport-Security": "max-age=63072000; includeSubDomains",
+      "X-Content-Type-Options": "nosniff",
+      "X-Frame-Options": "DENY",
+      "X-XSS-Protection": "1; mode=block",
+      "Feature-Policy": "accelerometer 'none'; camera 'none'; microphone 'none'"
+    }
+  },
+  "https_only": true,
+  "root": "build/",
+  "routes": {
+    "/**": "index.html"
+  }
+}
+```
+
+1. Check that docker daemon is running `` docker ps ``
+2. `` cd `` to project root
+3. Run ``` docker build -t react-docker . ```
+
+
 
