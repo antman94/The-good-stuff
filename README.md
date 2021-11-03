@@ -278,5 +278,5 @@ Then inside IntelliJ -
 * Ctrl+alt+S > Build,Execution,Deployment > Build Tools > Maven : Maven Home Path = ``\\wsl$\Ubuntu\usr\share\maven`` or whatever your path to maven is.
 * If project root is a folder inside git root folder - add the project root as a module
 
-
+Other problems related to WSL2 + maven ``https://youtrack.jetbrains.com/issue/IDEA-266670``
 
