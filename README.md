@@ -260,5 +260,23 @@ And static.json like this
 2. `` cd `` to project root
 3. Run ``` docker build -t react-docker . ```
 
+---
+
+# IntelliJ
+
+## Set up Java + Maven project in WSL
+Note: IntelliJ will only run with WSL1
+
+### Checklist
+### Step one - install maven
+1. sudo apt install maven
+2. Add M2_HOME="/usr/share/maven" to /etc/environment  ( ``sudo vim /etc/environment``  )
+3. Run ``source /etc/environment`` or restart session
+
+Then inside IntelliJ - 
+* Right-click project root "Add framework support" and pick maven
+* Ctrl+alt+S > Build,Execution,Deployment > Build Tools > Maven : Maven Home Path = ``\\wsl$\Ubuntu\usr\share\maven`` or whatever your path to maven is.
+* If project root is a folder inside git root folder - add the project root as a module
+
 
 
