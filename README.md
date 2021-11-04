@@ -264,8 +264,13 @@ And static.json like this
 
 # IntelliJ
 
+## Important notes about Intellij + Java + Maven in WSL2 
+* Tested combination of versions that works is Oracle Java 17.0.1 with Maven 3.8.3 
+* Java and Maven must be installed on the WSL2 Ubuntu distro file system.
+* .bashrc needs to contain the following: ``export PATH=/opt/apache-maven-3.8.3/bin:$PATH`` and ``export JAVA_HOME="/usr/lib/jvm/java-17-oracle"`` depending on your paths.
+
 ## Set up Java + Maven project in WSL
-Note: IntelliJ will only run with WSL1
+Note: IntelliJ will only run with WSL2
 
 ### Checklist
 ### Step one - install maven
@@ -280,3 +285,8 @@ Then inside IntelliJ -
 
 Other problems related to WSL2 + maven ``https://youtrack.jetbrains.com/issue/IDEA-266670``
 
+# Postgres
+
+## Postgres in WSL2
+
+https://harshityadav95.medium.com/postgresql-in-windows-subsystem-for-linux-wsl-6dc751ac1ff3
