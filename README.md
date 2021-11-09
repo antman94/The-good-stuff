@@ -266,27 +266,31 @@ And static.json like this
 
 ## Important notes about Intellij + Java + Maven in WSL2 
 * Tested combination of versions that works is Oracle Java 17.0.1 with Maven 3.8.3 
-* Java and Maven must be installed on the WSL2 Ubuntu distro file system.
-* .bashrc needs to contain the following: ``export PATH=/opt/apache-maven-3.8.3/bin:$PATH`` and ``export JAVA_HOME="/usr/lib/jvm/java-17-oracle"`` depending on your paths.
+* Java and Maven must be installed on the same platform, i.e in only windows or only WSL2 Ubuntu distro file system.
+* .bashrc needs to contain the following:  and ``export JAVA_HOME="/usr/lib/jvm/java-17-oracle"`` depending on your paths. You can check them with ``mvn -v `` and ``java --version``
+* When giving paths to files inside Intellij, for example an environmental variable config file, the path must consist of forward slashes '/' and not backward slashes '\' or it won't be found.
 
 ## Set up Java + Maven project in WSL
 Note: IntelliJ will only run with WSL2
 
 ### Checklist
 ### Step one - install maven
-1. sudo apt install maven
-2. Add M2_HOME="/usr/share/maven" to /etc/environment  ( ``sudo vim /etc/environment``  )
-3. Run ``source /etc/environment`` or restart session
-
-Then inside IntelliJ - 
-* Right-click project root "Add framework support" and pick maven
-* Ctrl+alt+S > Build,Execution,Deployment > Build Tools > Maven : Maven Home Path = ``\\wsl$\Ubuntu\usr\share\maven`` or whatever your path to maven is.
+Do NOT install maven with apt manager, this causes some strange bugs sometimes. Better download it with for example wget and unzip yourself. </br>
+For version 3.8.3: ``sudo wget https://dlcdn.apache.org/maven/maven-3/3.8.3/binaries/apache-maven-3.8.3-bin.tar.gz -P /opt`` to download maven to /opt folder in root. </br>
+Then ``sudo tar xzvf apache-maven-3.8.3-bin.tar.gz`` to unzip it in the same (opt) folder. </br>
+Also add maven to your PATH: </br>
+In /home ``sudo vim .bashrc`` and add ``export PATH=/opt/apache-maven-3.8.3/bin:$PATH`` somewhere in the bottom </br>
+Then inside IntelliJ -  </br>
+* Set maven home path with Ctrl+alt+S > Build,Execution,Deployment > Build Tools > Maven - Maven Home Path and set to ``\\wsl$\Ubuntu\opt\apache-maven-3.8.3\`` or whatever your path to maven is.
 * If project root is a folder inside git root folder - add the project root as a module
 
 Other problems related to WSL2 + maven ``https://youtrack.jetbrains.com/issue/IDEA-266670``
+
+---
 
 # Postgres
 
 ## Postgres in WSL2
 
-https://harshityadav95.medium.com/postgresql-in-windows-subsystem-for-linux-wsl-6dc751ac1ff3
+https://harshityadav95.medium.com/postgresql-in-windows-subsystem-for-linux-wsl-6dc751ac1ff3 </br>
+https://chloesun.medium.com/set-up-postgresql-on-wsl2-and-connect-to-postgresql-with-pgadmin-on-windows-ca7f0b7f38ab </br>
