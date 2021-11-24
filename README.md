@@ -274,7 +274,7 @@ And static.json like this
 Note: IntelliJ will only run with WSL2
 
 ### Checklist
-### Step one - install maven
+### Install maven
 Do NOT install maven with apt manager, this causes some strange bugs sometimes. Better download it with for example wget and unzip yourself. </br>
 For version 3.8.3: ``sudo wget https://dlcdn.apache.org/maven/maven-3/3.8.3/binaries/apache-maven-3.8.3-bin.tar.gz -P /opt`` to download maven to /opt folder in root. </br>
 Then ``sudo tar xzvf apache-maven-3.8.3-bin.tar.gz`` to unzip it in the same (opt) folder. </br>
@@ -283,6 +283,21 @@ In /home ``sudo vim .bashrc`` and add ``export PATH=/opt/apache-maven-3.8.3/bin:
 Then inside IntelliJ -  </br>
 * Set maven home path with Ctrl+alt+S > Build,Execution,Deployment > Build Tools > Maven - Maven Home Path and set to ``\\wsl$\Ubuntu\opt\apache-maven-3.8.3\`` or whatever your path to maven is.
 * If project root is a folder inside git root folder - add the project root as a module
+
+### Firewall rules required for WSL and IntelliJ
+If the following message is shown in IntelliJ when attempted build, check the following steps. </br>
+```python
+Abnormal build process termination: Cannot establish network connection from WSL to Windows host (could be blocked by firewall).
+```
+In admin Powershell: </br>
+1. Allow traffic from WSL to windows: </br>
+```powershell 
+New-NetFirewallRule -DisplayName "WSL" -Direction Inbound  -InterfaceAlias "vEthernet (WSL)"  -Action Allow
+```
+2. Remove blocking inbound traffic to IDEA: </br>
+```powershell
+Get-NetFirewallProfile -Name Public | Get-NetFirewallRule | where DisplayName -ILike "IntelliJ IDEA*" | Remove-NetFirewallRule
+```
 
 Other problems related to WSL2 + maven ``https://youtrack.jetbrains.com/issue/IDEA-266670``
 
