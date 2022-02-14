@@ -49,6 +49,15 @@ Note: Reverts the given commit and you end up at the commit before the specified
 2. ``` git commit -m "Removed folder from repository" ```
 3. ``` git push origin master ```
 
+## SSH keys for git
+
+### Set up automatic authentication (no password required every time) for Powershell
+* [Set up ssh agent in powershell](https://gist.github.com/danieldogeanu/16c61e9b80345c5837b9e5045a701c99)
+
+### Share SSH keys between Windows and WSL 2
+
+* [Sharing SSH keys Windows/WSL](https://devblogs.microsoft.com/commandline/sharing-ssh-keys-between-windows-and-wsl-2/)
+
 ---
 
 
