@@ -58,6 +58,13 @@ Note: Reverts the given commit and you end up at the commit before the specified
 
 * [Sharing SSH keys Windows/WSL](https://devblogs.microsoft.com/commandline/sharing-ssh-keys-between-windows-and-wsl-2/)
 
+1. Set up SSH keys on Windows 
+2. Copy the keys from Windows to WSL by entering in a WSL terminal:  `` cp -r /mnt/c/Users/<username>/.ssh ~/.ssh``
+3. Change permissions for the key file by entering ``` chmod 600 ~/.ssh/<key_file>```
+4. (Optional): Install keychain to automatically enter password for you when pushing to git ``` sudo apt install keychain```
+5. (Optional): Add automatic startup for keychain by adding ``` eval ``keychain --eval --agents ssh <key_file>``` to your ~/.bashrc file.
+6. Restart WSL (or even computer) and voilá.
+
 ---
 
 
