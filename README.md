@@ -72,6 +72,18 @@ Note: Reverts the given commit and you end up at the commit before the specified
 
 -Tips, tricks & hax in the terminal
 
+## Shell configs and misc.
+
+### Show current git branch in terminal (after username)
+1. sudo vim ~/.bashrc
+2. Add the following to the end of .bashrc
+```bash
+parse_git_branch() {
+   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[33m\]$(parse_git_branch)\[\033[00m\]\$ '
+```
+3. source ~/.bashrc
 ## MongoDB
 
 ### Start up MongoDB
